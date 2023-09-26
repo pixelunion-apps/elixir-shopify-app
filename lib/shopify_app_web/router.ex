@@ -42,12 +42,15 @@ defmodule ShopifyAppWeb.Router do
     end
   end
 
-  scope "/shop_admin/:app", ShopifyAppWeb do
-    pipe_through :browser
-    pipe_through :shop_admin
+  live_session :shop_admin,
+    layout: {ShopifyAppWeb.ShopAdminLive.Layouts, :app},
+    root_layout: {ShopifyAppWeb.ShopAdminLive.Layouts, :root} do
+    scope "/shop_admin/:app", ShopifyAppWeb do
+      pipe_through :browser
+      pipe_through :shop_admin
 
-    get "/", ShopAdminController, :index
-    get "/*path", ShopAdminController, :index
+      live "/", ShopAdminLive.Index, :live
+    end
   end
 
   # Other scopes may use custom stacks.

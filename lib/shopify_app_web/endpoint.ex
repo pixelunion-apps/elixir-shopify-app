@@ -8,7 +8,8 @@ defmodule ShopifyAppWeb.Endpoint do
     store: :cookie,
     key: "_shopify_app_key",
     signing_salt: "ijq1g2Yt",
-    same_site: "Lax"
+    same_site: "None",
+    secure: true
   ]
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
@@ -44,10 +45,6 @@ defmodule ShopifyAppWeb.Endpoint do
     app_name: "shopify_app",
     prefix: "/shopify/webhook",
     callback: {ShopifyApp.WebhookHandler, :handle_webhook, []}
-
-  if Mix.env() == :dev do
-    plug ShopifyApp.Plug.DevProxy, upstream: "http://localhost:3000"
-  end
 
   plug ShopifyAdminProxy,
     upstream: "https://example.myshopify.com/admin/api/2022-04/graphql.json",
