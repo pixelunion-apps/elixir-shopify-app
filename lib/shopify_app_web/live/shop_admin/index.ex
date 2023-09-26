@@ -17,6 +17,9 @@ defmodule ShopifyAppWeb.ShopAdminLive.Index do
 
   @impl true
   def handle_event("action", %{"title" => title}, socket) do
-    {:noreply, assign(socket, :page_title, "Home - " <> title)}
+    {:noreply,
+     socket
+     |> assign(:page_title, "Home - " <> title)
+     |> put_flash(:info, "A toast message from the flash!")}
   end
 end
