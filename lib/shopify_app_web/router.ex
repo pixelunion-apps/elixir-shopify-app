@@ -50,6 +50,8 @@ defmodule ShopifyAppWeb.Router do
       pipe_through :shop_admin
 
       live "/", ShopAdminLive.Index, :live
+      live "/settings", ShopAdminLive.Settings, :settings
+      live "/more", ShopAdminLive.Settings, :more_settings
     end
   end
 

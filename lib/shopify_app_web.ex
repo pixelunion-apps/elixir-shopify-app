@@ -66,6 +66,17 @@ defmodule ShopifyAppWeb do
     end
   end
 
+  def shop_admin_live_view do
+    quote do
+      use Phoenix.LiveView,
+        layout: {ShopifyAppWeb.Layouts, :app}
+
+      import ShopifyAppWeb.ShopAdminComponents
+
+      unquote(html_helpers())
+    end
+  end
+
   def html do
     quote do
       use Phoenix.Component

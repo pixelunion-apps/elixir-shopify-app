@@ -1,5 +1,5 @@
 defmodule ShopifyAppWeb.ShopAdminLive.Index do
-  use ShopifyAppWeb, :live_view
+  use ShopifyAppWeb, :shop_admin_live_view
 
   @impl true
   def mount(_params, _session, socket) do

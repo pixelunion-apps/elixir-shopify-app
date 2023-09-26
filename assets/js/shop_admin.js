@@ -13,6 +13,21 @@ let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToke
 window.addEventListener("phx:page-loading-start", _info => shopify.loading(true))
 window.addEventListener("phx:page-loading-stop", _info => shopify.loading(false))
 
+window.addEventListener("phx:page-loading-stop", info => {
+  /*
+    When navigating, AppBridge detects changes within a LiveView,
+    however, it does not detect between LiveView navigation, even when it is
+    correctly patching within a live_session. This re-emits a navigation event
+    that AppBridge will detect.
+  */
+  destination = new URL(info.detail.to).pathname
+  if (info.detail.kind == "initial" && destination != window.location.pathname) {
+    history.pushState(null, '', destination);
+  } else {
+    history.replaceState(null, '', destination);
+  }
+})
+
 // connect if there are any LiveViews on the page
 liveSocket.connect()
 
