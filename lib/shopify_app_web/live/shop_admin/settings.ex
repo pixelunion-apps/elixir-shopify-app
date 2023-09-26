@@ -3,7 +3,6 @@ defmodule ShopifyAppWeb.ShopAdminLive.Settings do
 
   @impl true
   def mount(_params, _session, socket) do
-    connected?(socket) |> dbg
     {:ok, socket}
   end
 
