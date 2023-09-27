@@ -69,11 +69,19 @@ defmodule ShopifyAppWeb do
   def shop_admin_live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {ShopifyAppWeb.Layouts, :app}
+        layout: {ShopifyAppWeb.ShopAdminLive.Layouts, :app}
 
       import ShopifyAppWeb.ShopAdminComponents
 
-      unquote(html_helpers())
+      # HTML escaping functionality
+      import Phoenix.HTML
+      import ShopifyAppWeb.Gettext
+
+      # Shortcut for generating JS commands
+      alias Phoenix.LiveView.JS
+
+      # Routes generation with the ~p sigil
+      unquote(verified_routes())
     end
   end
 
