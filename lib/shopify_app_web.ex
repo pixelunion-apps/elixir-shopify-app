@@ -72,6 +72,7 @@ defmodule ShopifyAppWeb do
         layout: {ShopifyAppWeb.ShopAdminLive.Layouts, :app}
 
       import ShopifyAppWeb.ShopAdminComponents
+      import ShopifyAppWeb.ShopAdmin.PolarisComponents
 
       # HTML escaping functionality
       import Phoenix.HTML
