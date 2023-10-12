@@ -21,7 +21,6 @@ defmodule ShopifyAppWeb.Router do
 
   pipeline :embeded_shop_admin do
     plug :accepts, ["html"]
-    plug CORSPlug, origin: ["*"]
     plug ShopifyAPI.Plugs.AuthShopSessionToken
     plug ShopifyAPI.Plugs.PutShopifyContentHeaders
   end
