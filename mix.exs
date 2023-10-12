@@ -50,6 +50,7 @@ defmodule ShopifyApp.MixProject do
       # eveyrthing else
       {:absinthe, "~> 1.7.0"},
       {:absinthe_plug, "~> 1.5"},
+      {:cors_plug, "~> 3.0"},
       {:ecto_sql, "~> 3.6"},
       {:esbuild, "~> 0.5", runtime: Mix.env() == :dev},
       {:finch, "~> 0.13"},

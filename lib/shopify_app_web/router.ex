@@ -19,6 +19,13 @@ defmodule ShopifyAppWeb.Router do
     plug ShopifyAPI.Plugs.PutShopifyContentHeaders
   end
 
+  pipeline :embeded_shop_admin do
+    plug :accepts, ["html"]
+    plug CORSPlug, origin: ["*"]
+    plug ShopifyAPI.Plugs.AuthShopSessionToken
+    plug ShopifyAPI.Plugs.PutShopifyContentHeaders
+  end
+
   pipeline :shop_admin_api do
     plug :accepts, ["json"]
     plug ShopifyAPI.Plugs.AuthShopSessionToken
@@ -53,6 +60,19 @@ defmodule ShopifyAppWeb.Router do
 
       live "/", ShopAdminLive.Index, :live
       live "/show", ShopAdminLive.Index, :show
+      live "/settings", ShopAdminLive.Settings, :settings
+      live "/more", ShopAdminLive.Settings, :more_settings
+    end
+  end
+
+  live_session :embeded_shop_admin,
+    layout: {ShopifyAppWeb.ShopAdminLive.Layouts, :app},
+    root_layout: {ShopifyAppWeb.ShopAdminLive.Layouts, :embeded},
+    on_mount: [ShopifyAppWeb.ShopAdminLive.AssignScope],
+    session: {ShopifyAppWeb.ShopAdminLive.AssignScope, :build_session, []} do
+    scope "/shop_admin", ShopifyAppWeb do
+      pipe_through :embeded_shop_admin
+
       live "/settings", ShopAdminLive.Settings, :settings
       live "/more", ShopAdminLive.Settings, :more_settings
     end
