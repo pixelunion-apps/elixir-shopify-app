@@ -5,13 +5,14 @@ defmodule ShopifyAppWeb.ShopAdminLive.IndexTest do
   import ShopifyApp.ShopTestSetup
 
   describe "ShopAdminLive.Index render" do
-    setup [:shop]
+    setup [:app_auth_token_shop]
 
-    test "disconnected and connected mount", %{conn: conn, shopifyapi_shop: shop} do
+    test "disconnected and connected mount", %{conn: conn, shopifyapi_shop: shop, app: app} do
       conn =
         conn
         |> assign(:shop, shop)
-        |> get("/shop_admin/shopify_shop")
+        |> assign(:app, app)
+        |> get("/live_shop_admin")
 
       assert html_response(conn, 200) =~ "Example <strong>Home</strong> LiveView"
 

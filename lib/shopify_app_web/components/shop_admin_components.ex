@@ -12,9 +12,15 @@ defmodule ShopifyAppWeb.ShopAdminComponents do
     ~H"""
     <div>
       <ul>
-        <li><.link patch={~p"/shop_admin/shopify_app/"}>Home</.link></li>
-        <li><.link patch={~p"/shop_admin/shopify_app/settings"}>Settings</.link></li>
-        <li><.link patch={~p"/shop_admin/shopify_app/more"}>More Settings</.link></li>
+        <%!--
+          # if we want to navigate back to react land, we need to remount with the HMAC
+          See https://shopify.dev/docs/api/app-bridge-library/reference/navigation
+          <li><a href="shopify:admin/apps/my-shopify-app-mount/shop_admin" target="_top">Home</a></li>
+        --%>
+        <li><.link patch={~p"/live_shop_admin/"}>Home</.link></li>
+        <li><.link patch={~p"/live_shop_admin/show"}>Show</.link></li>
+        <li><.link patch={~p"/live_shop_admin/settings"}>Settings</.link></li>
+        <li><.link patch={~p"/live_shop_admin/more"}>More Settings</.link></li>
       </ul>
     </div>
     """

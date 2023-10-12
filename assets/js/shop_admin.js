@@ -9,7 +9,7 @@ import {ShopifyToastHook} from "./hooks"
 
 let Hooks = { ShopifyToastHook }
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
-let liveSocket = new LiveSocket("/live", Socket, {hooks: Hooks, params: {_csrf_token: csrfToken}, bindingPrefix: "data-phx-"})
+let liveSocket = new LiveSocket("/shop_admin_live", Socket, {hooks: Hooks, params: {_csrf_token: csrfToken}, bindingPrefix: "data-phx-"})
 
 // Show progress bar on live navigation and form submits
 window.addEventListener("phx:page-loading-start", _info => shopify.loading(true))
@@ -22,7 +22,7 @@ window.addEventListener("phx:page-loading-stop", info => {
     correctly patching within a live_session. This re-emits a navigation event
     that AppBridge will detect.
   */
-  destination = new URL(info.detail.to).pathname
+  const destination = new URL(info.detail.to).pathname
   if (info.detail.kind == "initial" && destination != window.location.pathname) {
     history.pushState(null, '', destination);
   } else {

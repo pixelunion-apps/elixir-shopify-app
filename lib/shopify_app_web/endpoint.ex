@@ -8,11 +8,15 @@ defmodule ShopifyAppWeb.Endpoint do
     store: :cookie,
     key: "_shopify_app_key",
     signing_salt: "ijq1g2Yt",
-    same_site: "None",
-    secure: true
+    same_site: "Lax"
   ]
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
+
+  # For the ShopAdmin, we do not need anything in the session outside of what we put there from the conn.
+  # by not defining session storage, we do not need to worry about cookies and how to access them.
+  # The session info will be populated AssignScope and store in the DOM on `data-phx-session`
+  socket "/shop_admin_live", Phoenix.LiveView.Socket, websocket: [connect_info: []]
 
   # Serve at "/" the static files from "priv/static" directory.
   #

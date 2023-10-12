@@ -3,7 +3,7 @@ defmodule ShopifyAppWeb.ShopAdminLive.Settings do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, socket}
+    {:ok, assign(socket, :connected, connected?(socket))}
   end
 
   @impl true
@@ -17,5 +17,13 @@ defmodule ShopifyAppWeb.ShopAdminLive.Settings do
 
   defp apply_action(socket, :more_settings, _params) do
     assign(socket, :page_title, "More Settings")
+  end
+
+  @impl true
+  def handle_event("action", %{"title" => title}, socket) do
+    {:noreply,
+     socket
+     |> assign(:page_title, "Settings - " <> title)
+     |> put_flash(:info, "A toast message from the flash!")}
   end
 end

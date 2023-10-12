@@ -1,9 +1,12 @@
 <ui-title-bar title={@page_title}>
-  <button onclick="console.log('Secondary action')">Secondary action</button>
+  <.button data-phx-click="action" data-phx-value-title="Secondary">
+    Secondary action
+  </.button>
 </ui-title-bar>
 
 <header>
-  Example <strong>Settings</strong> LiveView
+  Example <strong><%= @page_title %></strong> LiveView
 </header>
+Conected <%= @connected %> <%= @live_action %> <%= @scope.shop.domain %>
 
 <.navigation_links />

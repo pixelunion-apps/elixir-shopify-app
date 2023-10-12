@@ -3,7 +3,7 @@ defmodule ShopifyAppWeb.ShopAdminLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, socket}
+    {:ok, assign(socket, :connected, connected?(socket))}
   end
 
   @impl true
@@ -13,6 +13,10 @@ defmodule ShopifyAppWeb.ShopAdminLive.Index do
 
   defp apply_action(socket, :live, _params) do
     assign(socket, :page_title, "Home")
+  end
+
+  defp apply_action(socket, other, _params) do
+    assign(socket, :page_title, "Home - #{other}")
   end
 
   @impl true
