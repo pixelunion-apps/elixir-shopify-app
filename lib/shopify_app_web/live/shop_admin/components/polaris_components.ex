@@ -14,4 +14,5 @@ defmodule ShopifyAppWeb.ShopAdmin.PolarisComponents do
   defdelegate spinner(assigns), to: ShopifyAppWeb.ShopAdmin.PolarisComponents.Spinner
   defdelegate box(assigns), to: ShopifyAppWeb.ShopAdmin.PolarisComponents.Box
   defdelegate text(assigns), to: ShopifyAppWeb.ShopAdmin.PolarisComponents.Text
+  defdelegate card(assigns), to: ShopifyAppWeb.ShopAdmin.PolarisComponents.Card
 end
