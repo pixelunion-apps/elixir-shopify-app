@@ -67,6 +67,7 @@ defmodule ShopifyApp.MixProject do
       {:reverse_proxy_plug, "~> 3.0"},
       {:shopify_admin_proxy, github: "hez/elixir-shopify-admin-proxy", tag: "v0.4.1"},
       {:shopify_api, github: "orbit-apps/elixir-shopifyapi", tag: "v0.15.6"},
+      {:phoenix_storybook, "~> 0.5.0"},
       {:swoosh, "~> 1.3"},
       {:tailwind, "~> 0.2.0", runtime: Mix.env() == :dev},
       {:telemetry_metrics, "~> 1.0"},
@@ -87,7 +88,12 @@ defmodule ShopifyApp.MixProject do
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"]
+      "assets.deploy": [
+        "tailwind default --minify",
+        "esbuild default --minify",
+        "phx.digest",
+        "tailwind storybook --minify"
+      ]
     ]
   end
 end

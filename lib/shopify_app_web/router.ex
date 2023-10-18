@@ -1,6 +1,8 @@
 defmodule ShopifyAppWeb.Router do
   use ShopifyAppWeb, :router
 
+  import PhoenixStorybook.Router
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -24,10 +26,15 @@ defmodule ShopifyAppWeb.Router do
     plug ShopifyAPI.Plugs.AuthShopSessionToken
   end
 
+  scope "/" do
+    storybook_assets()
+  end
+
   scope "/", ShopifyAppWeb do
     pipe_through :browser
 
     get "/", PageController, :index
+    live_storybook("/storybook", backend_module: ShopifyAppWeb.Storybook)
   end
 
   scope "/shop", ShopifyAPI do
