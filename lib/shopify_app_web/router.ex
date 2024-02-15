@@ -34,6 +34,7 @@ defmodule ShopifyAppWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
     live_storybook("/storybook", backend_module: ShopifyAppWeb.Storybook)
   end
 

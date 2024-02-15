@@ -1,11 +1,12 @@
 defmodule ShopifyAppWeb.ShopAdmin.PolarisComponents.Spinner do
   @moduledoc """
-  Spinner
+  Spinners are used to notify merchants that their action is being processed. For loading states, spinners should only be used for content that can’t be represented with skeleton loading components, like for data charts.
 
   ## Examples
 
-    <.spinner size="small" accessibility_label="loading" />
-    <.spinner size="large" accessibility_label="loading" />
+      <.spinner size="small" accessibility_label="loading" />
+
+      <.spinner size="large" accessibility_label="loading" />
 
   See
     - https://polaris.shopify.com/components/feedback-indicators/spinner
@@ -16,7 +17,7 @@ defmodule ShopifyAppWeb.ShopAdmin.PolarisComponents.Spinner do
 
   @doc @moduledoc
 
-  attr :accessibility_label, :string
+  attr :accessibility_label, :string, required: true
   attr :size, :string, values: ["small", "large"], default: "small"
   attr :has_focusable_parent, :boolean, default: false
 

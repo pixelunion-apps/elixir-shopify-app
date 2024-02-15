@@ -1,12 +1,11 @@
 defmodule ShopifyAppWeb.ShopAdmin.PolarisComponents.Card do
   @moduledoc """
-  Card
-
   Cards are used to group similar concepts and tasks together for merchants to scan, read, and get things done. It displays content in a familiar and recognizable style.
 
   ## Examples
 
     <.card><.text as="h2">Content inside a card</.text></.card>
+
     <.card rounded_above="sm" background="bg-surface-secondary" padding="400"><.text as="h2">Content inside a card</.text></.card>
 
   See

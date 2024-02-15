@@ -95,7 +95,7 @@ defmodule ShopifyAppWeb.ShopAdmin.PolarisComponents.Text do
   def text_class({:tone, value}), do: ["Polaris-Text--#{value}"]
   def text_class({:font_weight, value}), do: ["Polaris-Text--#{value}"]
   def text_class({:variant, value}), do: ["Polaris-Text--#{value}"]
-  def text_class({:text_decoration_line, value}), do: ["Polaris-Text--#{value}"]
+  def text_class({:text_decoration_line, "line-through"}), do: ["Polaris-Text__line--through"]
   def text_class({_key, _value}), do: []
 
   @doc """
