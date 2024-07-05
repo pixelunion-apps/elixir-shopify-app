@@ -1,0 +1,37 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "ShopifyApp"
+client_id = "xxx"
+application_url = "https://shopify-app.ngrok.io/shop_admin"
+embedded = true
+# extension_directories = [ "extensions/*" ]
+# web_directories = [ "admin_ui/*" ]
+
+[build]
+include_config_on_deploy = false
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_customers write_customers read_discounts write_discounts read_products read_orders"
+
+[auth]
+redirect_urls = [ "https://shopify-app.ngrok.io/shop/authorized/shopify-app" ]
+
+[webhooks]
+api_version = "2024-01"
+
+    [webhooks.privacy_compliance]
+    customer_deletion_url = "https://shopify-app.ngrok.io/shopify/webhook"
+    customer_data_request_url = "https://shopify-app.ngrok.io/shopify/webhook"
+    shop_deletion_url = "https://shopify-app.ngrok.io/shopify/webhook"
+
+[app_proxy]
+url = "https://shopify-app.ngrok.io/app_proxy"
+subpath = "shopify-app"
+prefix = "apps"
+
+[pos]
+embedded = false
+
+[app_preferences]
+url = "https://shopify-app-ngrok.io/shop_admin/preferences"
