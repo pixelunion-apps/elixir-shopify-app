@@ -44,7 +44,7 @@ defmodule ShopifyApp.MixProject do
       {:credo, "~> 1.7.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.4.1", only: [:dev, :test], runtime: false},
       {:floki, ">= 0.30.0", only: :test},
-      {:ex_machina, "~> 2.7.0", only: :test},
+      {:ex_machina, "~> 2.8.0", only: :test},
       {:faker, "~> 0.17", only: :test},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       # eveyrthing else
