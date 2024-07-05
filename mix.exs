@@ -62,7 +62,8 @@ defmodule ShopifyApp.MixProject do
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_live_dashboard, "~> 0.8"},
       {:phoenix_live_view, "~> 0.20"},
-      {:plug_cowboy, "~> 2.5"},
+      {:phoenix_storybook, "~> 0.6"},
+      {:plug_cowboy, "~> 2.7"},
       {:postgrex, ">= 0.0.0"},
       {:reverse_proxy_plug, "~> 3.0"},
       {:shopify_admin_proxy, github: "hez/elixir-shopify-admin-proxy", tag: "v0.4.1"},
@@ -87,7 +88,12 @@ defmodule ShopifyApp.MixProject do
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"]
+      "assets.deploy": [
+        "tailwind default --minify",
+        "esbuild default --minify",
+        "phx.digest",
+        "tailwind storybook --minify"
+      ]
     ]
   end
 end

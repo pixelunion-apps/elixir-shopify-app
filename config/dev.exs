@@ -26,7 +26,8 @@ config :shopify_app, ShopifyAppWeb.Endpoint,
   secret_key_base: "AKZhpmq4Y/pC41oalKuYZPceJTzb7uMYv4itlofdbLIiDYPmYSnoUBkSbA4wnpVo",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
+    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]},
+    storybook_tailwind: {Tailwind, :install_and_run, [:storybook, ~w(--watch)]}
   ]
 
 # ## SSL Support
@@ -58,7 +59,8 @@ config :shopify_app, ShopifyAppWeb.Endpoint,
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/shopify_app_web/(controllers|live|components)/.*(ex|heex)$"
+      ~r"lib/shopify_app_web/(controllers|live|components)/.*(ex|heex)$",
+      ~r"storybook/.*(exs)$"
     ]
   ]
 
