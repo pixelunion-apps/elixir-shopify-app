@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" style="scrollbar-gutter: stable;">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+    <meta name="shopify-api-key" content={ShopifyApp.Config.api_key()} />
+
+    <%!-- Polaris CSS --%>
+    <link rel="stylesheet" href="https://unpkg.com/@shopify/polaris@11.14.0/build/esm/styles.css" />
+    <%!-- AppBridge JS --%>
+    <script src="https://cdn.shopify.com/shopifycloud/app-bridge.js">
+    </script>
+
+    <link data-phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+    <script defer data-phx-track-static type="text/javascript" src={~p"/assets/shop_admin.js"}>
+    </script>
+
+    <ui-nav-menu>
+      <a href="/live_shop_admin/" rel="home">Root</a>
+      <a href="/live_shop_admin/">Home</a>
+      <a href="/live_shop_admin/show">Show</a>
+      <a href="/live_shop_admin/settings">Settings</a>
+      <a href="/live_shop_admin/more">More Settings</a>
+    </ui-nav-menu>
+  </head>
+  <body class="bg-white antialiased">
+    <%= @inner_content %>
+  </body>
+</html>

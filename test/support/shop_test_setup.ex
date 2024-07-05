@@ -2,7 +2,9 @@ defmodule ShopifyApp.ShopTestSetup do
   import ShopifyApp.Factory
 
   def app_auth_token_shop(context) do
-    [shop: shop, shopifyapi_shop: _] = shop(context)
+    shop_context = shop(context)
+    shop = Keyword.fetch!(shop_context, :shop)
+    shopifyapi_shop = Keyword.fetch!(shop_context, :shopifyapi_shop)
     [app: app] = app(context)
     [token: token] = auth_token(%{shop: shop})
     [shop_admin_token: shop_admin_token] = shop_admin_token(%{shop: shop, app: app})
@@ -11,6 +13,7 @@ defmodule ShopifyApp.ShopTestSetup do
       app: app,
       auth_token: token,
       shop: shop,
+      shopifyapi_shop: shopifyapi_shop,
       shop_admin_token: shop_admin_token
     ]
   end

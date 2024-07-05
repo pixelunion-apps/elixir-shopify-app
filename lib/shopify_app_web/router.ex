@@ -15,7 +15,7 @@ defmodule ShopifyAppWeb.Router do
   end
 
   pipeline :shop_admin do
-    plug ShopifyAPI.Plugs.AdminAuthenticator, shopify_router_mount: "/shop"
+    plug ShopifyAPI.Plugs.AdminAuthenticator, app_name: "shopify_app"
     plug ShopifyAPI.Plugs.PutShopifyContentHeaders
   end
 
@@ -42,12 +42,20 @@ defmodule ShopifyAppWeb.Router do
     end
   end
 
-  scope "/shop_admin/:app", ShopifyAppWeb do
-    pipe_through :browser
-    pipe_through :shop_admin
+  live_session :live_shop_admin,
+    layout: {ShopifyAppWeb.ShopAdminLive.Layouts, :app},
+    root_layout: {ShopifyAppWeb.ShopAdminLive.Layouts, :root},
+    on_mount: [ShopifyAppWeb.ShopAdminLive.AssignScope],
+    session: {ShopifyAppWeb.ShopAdminLive.AssignScope, :build_session, []} do
+    scope "/live_shop_admin", ShopifyAppWeb do
+      pipe_through :browser
+      pipe_through :shop_admin
 
-    get "/", ShopAdminController, :index
-    get "/*path", ShopAdminController, :index
+      live "/", ShopAdminLive.Index, :live
+      live "/show", ShopAdminLive.Index, :show
+      live "/settings", ShopAdminLive.Settings, :settings
+      live "/more", ShopAdminLive.Settings, :more_settings
+    end
   end
 
   # Other scopes may use custom stacks.

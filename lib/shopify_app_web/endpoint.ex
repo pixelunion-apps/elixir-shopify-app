@@ -13,6 +13,11 @@ defmodule ShopifyAppWeb.Endpoint do
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
+  # For the ShopAdmin, we do not need anything in the session outside of what we put there from the conn.
+  # by not defining session storage, we do not need to worry about cookies and how to access them.
+  # The session info will be populated AssignScope and store in the DOM on `data-phx-session`
+  socket "/shop_admin_live", Phoenix.LiveView.Socket, websocket: [connect_info: []]
+
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phx.digest
@@ -44,10 +49,6 @@ defmodule ShopifyAppWeb.Endpoint do
     app_name: "shopify_app",
     prefix: "/shopify/webhook",
     callback: {ShopifyApp.WebhookHandler, :handle_webhook, []}
-
-  if Mix.env() == :dev do
-    plug ShopifyApp.Plug.DevProxy, upstream: "http://localhost:3000"
-  end
 
   plug ShopifyAdminProxy,
     upstream: "https://example.myshopify.com/admin/api/2022-04/graphql.json",

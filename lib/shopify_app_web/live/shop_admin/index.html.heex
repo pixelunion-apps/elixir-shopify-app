@@ -1,0 +1,15 @@
+<ui-title-bar title={@page_title}>
+  <.button variant="primary" data-phx-click="action" data-phx-value-title="Primary">
+    Primary action
+  </.button>
+  <.button data-phx-click="action" data-phx-value-title="Secondary">
+    Secondary action
+  </.button>
+</ui-title-bar>
+
+<header>
+  Example <strong><%= @page_title %></strong> LiveView
+</header>
+Conected <%= @connected %>
+
+<.navigation_links />
