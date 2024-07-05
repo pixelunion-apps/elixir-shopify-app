@@ -18,6 +18,9 @@ defmodule ShopifyAppWeb.Endpoint do
   # The session info will be populated AssignScope and store in the DOM on `data-phx-session`
   socket "/shop_admin_live", Phoenix.LiveView.Socket, websocket: [connect_info: []]
 
+  # Add CORS specifically for the "/shop_admin" route for embeding LiveView in react.
+  plug ShopifyApp.Plug.CORS, path: "shop_admin"
+
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phx.digest
