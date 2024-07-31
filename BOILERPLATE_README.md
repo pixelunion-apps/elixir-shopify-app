@@ -13,12 +13,25 @@
     - `asdf install`
 - Install Shopify CLI
     - `npm install -g @shopify/cli@latest`
-- Setup environment variables
-    - ensure direnv is working `https://direnv.net/docs/hook.html`
-    - Create .envrc.private `cp .envrc.private.example .envrc.private` and update values.
 - Start database and ngrok
     - `docker-compose up`
 - Create Shopify App and Shop
+  - App
+    - Navigate to apps section on left-hand navigation
+    - App Setup
+      - App URL: "https://mysubdomain.ngrok.io/shop_admin"
+      - Allowed Redirection URL(s): "https://mysubdomain.ngrok.io/shop/authorized/shopify_app"
+      - GDPR Mandatory Webhooks all fields: "https://mysubdomain.ngrok.io/shopify/webhook/shopify_app"
+  - Shop
+    - Navigate to Stores section
+    - Create a development store
+    - Navigate to shop dashboard
+    - Test your App > Select Store > Install
+- Setup environment variables
+    - ensure direnv is working `https://direnv.net/docs/hook.html`
+    - Create .envrc.private `cp .envrc.private.example .envrc.private` and update values.
+    - Run `direnv allow`
+    - Copy .ngrok.yml `cp .ngrok.yml.example .ngrok.yml` and update values
 - Fetch Elixir Deps, create database
     - `mix deps.get`
     - `mix ecto.setup`
