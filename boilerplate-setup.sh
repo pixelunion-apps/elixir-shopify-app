@@ -15,12 +15,13 @@ content=$(find . -type f \( \
   -name "*.ex" -or \
   -name "*.exs" -or \
   -name "*.ees" -or \
+  -name "*.heex" -or \
   -name "*.sh" -or \
   -name "*.json" -or \
   -name "*.js" -or \
   -name "*.yml" -or \
   -name "*.md" -or \
-  -name ".env.*" -or \
+  -name ".envrc" \
   -name "Dockerfile" \
 \) \
   -and ! -path "./boilerplate-setup.sh" \

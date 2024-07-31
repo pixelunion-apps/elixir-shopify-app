@@ -1,6 +1,5 @@
 export API_KEY=""
 export API_SECRET=""
-export NGROK_AUTH=""
 export NGROK_SUBDOMAIN=""
 export HOST=$NGROK_SUBDOMAIN.ngrok.io
 
