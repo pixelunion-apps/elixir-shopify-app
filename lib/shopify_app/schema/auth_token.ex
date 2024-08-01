@@ -1,6 +1,6 @@
 defmodule ShopifyApp.Schema.AuthToken do
   @moduledoc false
-  use Ecto.Schema
+  use ShopifyApp.Schema
   import Ecto.Changeset
 
   schema "auth_tokens" do

@@ -1,6 +1,6 @@
 defmodule ShopifyApp.Schema.Shop do
   @moduledoc false
-  use Ecto.Schema
+  use ShopifyApp.Schema
   import Ecto.Changeset
 
   @type t :: %__MODULE__{}
