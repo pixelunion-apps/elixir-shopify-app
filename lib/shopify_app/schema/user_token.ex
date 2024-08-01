@@ -1,6 +1,6 @@
 defmodule ShopifyApp.Schema.UserToken do
   @moduledoc false
-  use Ecto.Schema
+  use ShopifyApp.Schema
   import Ecto.Changeset
 
   alias ShopifyApp.Schema

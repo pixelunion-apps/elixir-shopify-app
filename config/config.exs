@@ -7,8 +7,11 @@
 # General application configuration
 import Config
 
+config :shopify_app, ShopifyApp.Repo, migration_primary_key: [type: :binary_id]
+
 config :shopify_app,
-  ecto_repos: [ShopifyApp.Repo]
+  ecto_repos: [ShopifyApp.Repo],
+  generators: [timestamp_type: :utc_datetime, binary_id: true]
 
 # Configures the endpoint
 config :shopify_app, ShopifyAppWeb.Endpoint,
