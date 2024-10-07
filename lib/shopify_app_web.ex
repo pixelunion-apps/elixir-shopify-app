@@ -42,8 +42,9 @@ defmodule ShopifyAppWeb do
         formats: [:html, :json],
         layouts: [html: ShopifyAppWeb.Layouts]
 
+      use Gettext, backend: ShopifyAppWeb.Gettext
+
       import Plug.Conn
-      import ShopifyAppWeb.Gettext
 
       unquote(verified_routes())
     end
@@ -81,11 +82,12 @@ defmodule ShopifyAppWeb do
 
   defp html_helpers do
     quote do
+      use Gettext, backend: ShopifyAppWeb.Gettext
+
       # HTML escaping functionality
       import Phoenix.HTML
       # Core UI components and translation
       import ShopifyAppWeb.CoreComponents
-      import ShopifyAppWeb.Gettext
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
