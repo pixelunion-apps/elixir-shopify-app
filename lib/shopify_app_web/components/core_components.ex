@@ -10,9 +10,9 @@ defmodule ShopifyAppWeb.CoreComponents do
   [heroicons_elixir](https://github.com/mveytsman/heroicons_elixir) project.
   """
   use Phoenix.Component
+  use Gettext, backend: ShopifyAppWeb.Gettext
 
   alias Phoenix.LiveView.JS
-  import ShopifyAppWeb.Gettext
 
   @doc """
   Renders a modal.
